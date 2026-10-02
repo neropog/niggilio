@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <link rel="icon" href="https://www.youtube.com/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ================= CABEÇALHO ================= -->
+    <header class="header">
+        <div class="header-left">
+            <button class="icon-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <a class="logo" href="#/" aria-label="YouTube - página inicial">
+                <i class="fab fa-youtube yt-icon"></i>
+                <span>YouTube</span><sup>BR</sup>
+            </a>
+        </div>
+
+        <div class="header-center">
+            <div class="search-wrap">
+                <form class="search-bar" id="searchForm" role="search">
+                    <input type="text" id="searchInput" placeholder="Pesquisar" autocomplete="off" aria-label="Pesquisar">
+                    <button type="submit" class="search-btn" aria-label="Pesquisar"><i class="fas fa-magnifying-glass"></i></button>
+                </form>
+                <ul class="suggest" id="suggest"></ul>
+            </div>
+            <button class="mic-btn" id="micBtn" aria-label="Pesquisar por voz"><i class="fas fa-microphone"></i></button>
+        </div>
+
+        <div class="header-right">
+            <div class="menu-wrap hide-sm">
+                <button class="icon-btn" data-menu="menuCreate" aria-label="Criar"><i class="fas fa-video"></i></button>
+                <div class="menu" id="menuCreate">
+                    <button class="menu-item" data-action="upload"><i class="fas fa-upload"></i>Enviar vídeo</button>
+                    <button class="menu-item" data-action="live"><i class="fas fa-tower-broadcast"></i>Transmitir ao vivo</button>
+                </div>
+            </div>
+
+            <div class="menu-wrap">
+                <button class="icon-btn" data-menu="menuNotif" aria-label="Notificações">
+                    <i class="fas fa-bell"></i><span class="badge">5</span>
+                </button>
+                <div class="menu menu-notif" id="menuNotif">
+                    <div class="menu-title">Notificações</div>
+                    <div id="notifList"></div>
+                </div>
+            </div>
+
+            <div class="menu-wrap">
+                <button class="profile-pic" data-menu="menuProfile" aria-label="Conta">M</button>
+                <div class="menu" id="menuProfile">
+                    <div class="menu-user">
+                        <div class="profile-pic static">M</div>
+                        <div><b>Você</b><br><small>@voce</small></div>
+                    </div>
+                    <hr>
+                    <a class="menu-item" href="#/channel/morgilio"><i class="fas fa-user"></i>Seu canal</a>
+                    <button class="menu-item" data-action="theme"><i class="fas fa-moon" id="themeIcon"></i><span id="themeLabel">Aparência: tema escuro</span></button>
+                    <button class="menu-item" data-action="reset"><i class="fas fa-trash"></i>Limpar meus dados</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= BARRA LATERAL ================= -->
+    <aside class="sidebar" id="sidebar">
+        <div class="drawer-head">
+            <button class="icon-btn" id="drawerClose" aria-label="Fechar menu"><i class="fas fa-bars"></i></button>
+            <a class="logo" href="#/"><i class="fab fa-youtube yt-icon"></i><span>YouTube</span><sup>BR</sup></a>
+        </div>
+
+        <a class="nav-item" data-key="" href="#/"><i class="fas fa-house"></i><span>Início</span></a>
+        <a class="nav-item" data-key="shorts" href="#/shorts"><i class="fas fa-bolt"></i><span>Shorts</span></a>
+        <a class="nav-item" data-key="subscriptions" href="#/subscriptions"><i class="fas fa-circle-play"></i><span>Inscrições</span></a>
+        <a class="nav-item mini-only" data-key="history" href="#/history"><i class="fas fa-user-circle"></i><span>Você</span></a>
+
+        <div class="full-only">
+            <hr>
+            <h4 class="nav-title">Você</h4>
+            <a class="nav-item" data-key="channel/morgilio" href="#/channel/morgilio"><i class="fas fa-user"></i><span>Seu canal</span></a>
+            <a class="nav-item" data-key="history" href="#/history"><i class="fas fa-clock-rotate-left"></i><span>Histórico</span></a>
+            <a class="nav-item" data-key="watchlater" href="#/watchlater"><i class="fas fa-clock"></i><span>Assistir mais tarde</span></a>
+            <a class="nav-item" data-key="liked" href="#/liked"><i class="fas fa-thumbs-up"></i><span>Vídeos que gostei</span></a>
+            <hr>
+            <h4 class="nav-title">Explorar</h4>
+            <a class="nav-item" data-key="trending" href="#/trending"><i class="fas fa-fire"></i><span>Em alta</span></a>
+            <a class="nav-item" data-key="explore/Música" href="#/explore/Música"><i class="fas fa-music"></i><span>Música</span></a>
+            <a class="nav-item" data-key="explore/Jogos" href="#/explore/Jogos"><i class="fas fa-gamepad"></i><span>Jogos</span></a>
+            <a class="nav-item" data-key="explore/Ao vivo" href="#/explore/Ao vivo"><i class="fas fa-tower-broadcast"></i><span>Ao vivo</span></a>
+            <hr>
+            <p class="side-foot">Brincadeira feita com carinho.<br>Nenhuma relação com o YouTube de verdade.</p>
+        </div>
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
+
+    <!-- ================= PÁGINAS (renderizadas pelo script.js) ================= -->
+    <main class="content" id="app" tabindex="-1"></main>
+
+    <!-- Voz, modal e avisos -->
+    <div class="voice" id="voice">
+        <div class="voice-box">
+            <p id="voiceText">Ouvindo…</p>
+            <div class="mic-pulse"><i class="fas fa-microphone"></i></div>
+            <small>Toque para cancelar</small>
+        </div>
+    </div>
+    <div id="modalRoot"></div>
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
